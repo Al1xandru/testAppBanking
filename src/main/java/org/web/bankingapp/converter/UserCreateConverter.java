@@ -14,7 +14,7 @@ public class UserCreateConverter implements Converter<User, UserCreateDto, UserR
     }
 
     public UserResponseDto toDto(User user, String roleAuthority){
-        if("ADMIN".equals(roleAuthority)){
+        if("[ROLE_ADMIN]".equals(roleAuthority)){
             return new UserResponseDto(user.getId(), user.getUsername(), user.getEmail(), user.getAccounts());
         }else{
             return new UserResponseDto(user.getId(), user.getUsername(), user.getEmail());
