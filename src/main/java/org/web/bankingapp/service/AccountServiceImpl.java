@@ -37,4 +37,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getCurrentAccounts() {
         return accountRepository.findAllByCurrentUserId(userService.getCurrentUserId());
     }
+
+    @Override
+    public List<Account> getByUserName(String username) {
+        User user = userService.getByUsername(username);
+        return accountRepository.findAllByCurrentUserId(user.getId());
+    }
 }

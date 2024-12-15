@@ -44,4 +44,11 @@ public class AccountController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/search")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<AccountDto> getByUserName(@RequestParam(name = "name") String name) {
+        return accountService.getByUserName(name).stream()
+                .map(account -> new AccountDto(account.getAccountNumber(), account.getBalance(), account.getId()))
+                .collect(Collectors.toList());
+    }
 }
