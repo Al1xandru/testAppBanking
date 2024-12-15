@@ -29,7 +29,7 @@ public class AccountController {
 
     @GetMapping("/current")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    private List<AccountDto> getCurrentUserAccounts() {
+    public List<AccountDto> getCurrentUserAccounts() {
         return accountService.getCurrentAccounts().stream()
                 .map(account -> new AccountDto(account.getAccountNumber(), account.getBalance(), account.getId()))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class AccountController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    private List<AccountDto> getAccounts() {
+    public List<AccountDto> getAccounts() {
         return accountService.getAllAccounts().stream()
                 .map(account -> new AccountDto(account.getAccountNumber(), account.getBalance(), account.getId()))
                 .collect(Collectors.toList());
